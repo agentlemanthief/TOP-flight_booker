@@ -31,14 +31,14 @@ puts 'Finished Seeding Airports!'
 puts 'Seeding Flights...'
 
 Flight.create(origin: 'SFO', destination: 'NYC', departure: '2021-07-21 12:00', duration: '03:00', from_airport_id: '2', to_airport_id: '1')
-Flight.create(origin: 'SFO', destination: 'NYC', departure: '2021-07-29 12:00', duration: '03:00')
-Flight.create(origin: 'SFO', destination: 'NYC', departure: '2021-08-03 12:00', duration: '03:00')
-Flight.create(origin: 'SFO', destination: 'NYC', departure: '2021-08-21 12:00', duration: '03:00')
-Flight.create(origin: 'SFO', destination: 'NYC', departure: '2021-09-05 12:00', duration: '03:00')
-Flight.create(origin: 'NYC', destination: 'SFO', departure: '2021-07-25 12:00', duration: '02:30')
-Flight.create(origin: 'NYC', destination: 'SFO', departure: '2021-07-31 12:00', duration: '02:30')
-Flight.create(origin: 'NYC', destination: 'SFO', departure: '2021-08-22 12:00', duration: '02:30')
-Flight.create(origin: 'NYC', destination: 'SFO', departure: '2021-08-30 12:00', duration: '02:30')
-Flight.create(origin: 'NYC', destination: 'SFO', departure: '2021-09-11 12:00', duration: '02:30')
+Flight.create(origin: 'SFO', destination: 'NYC', departure: '2021-07-29 12:00', duration: '03:00', from_airport_id: '2', to_airport_id: '1')
+Flight.create(origin: 'SFO', destination: 'NYC', departure: '2021-08-03 12:00', duration: '03:00', from_airport_id: '2', to_airport_id: '1')
+Flight.create(origin: 'SFO', destination: 'NYC', departure: '2021-08-21 12:00', duration: '03:00', from_airport_id: '2', to_airport_id: '1')
+Flight.create(origin: 'SFO', destination: 'NYC', departure: '2021-09-05 12:00', duration: '03:00', from_airport_id: '2', to_airport_id: '1')
+Flight.create(origin: 'NYC', destination: 'SFO', departure: '2021-07-25 12:00', duration: '02:30', from_airport_id: '1', to_airport_id: '2')
+Flight.create(origin: 'NYC', destination: 'SFO', departure: '2021-07-31 12:00', duration: '02:30', from_airport_id: '1', to_airport_id: '2')
+Flight.create(origin: 'NYC', destination: 'SFO', departure: '2021-08-22 12:00', duration: '02:30', from_airport_id: '1', to_airport_id: '2')
+Flight.create(origin: 'NYC', destination: 'SFO', departure: '2021-08-30 12:00', duration: '02:30', from_airport_id: '1', to_airport_id: '2')
+Flight.create(origin: 'NYC', destination: 'SFO', departure: '2021-09-11 12:00', duration: '02:30', from_airport_id: '1', to_airport_id: '2')
 
 puts 'Finished Seeding Flights!'
