@@ -1,29 +1,24 @@
 class FlightsController < ApplicationController
 
   def index
-    @flights = Flight.all
-    @airports = Airport.all
-    @flight_date_options = Flight.all.map { |flight| [ flight_date_formatted(flight.departure), flight.departure ] }
-    @airport_options = Airport.all.map { |airport| [ airport.name, airport.airport_code ] }
+    @airport_options = Airport.all.map { |airport| [airport.name, airport.airport_code] }
     @passenger_options = (1..4).each
-  end
-
-  def show
-    @flight = Flight.find(params[:id])
-  end
-
-  def new
-    @flights = Flight.all
+    @search_results = search
   end
 
   def flight_date_formatted(date)
     date.strftime('%d/%m/%Y %H:%M')
   end
 
+  def search
+    if params[:search]
+      result = Flight.where("origin = ? AND destination = ? AND departure LIKE ?", params[:search][:from_airport], params[:search][:to_airport], "#{params[:search][:departure]}%")
+    end
+  end
+
   private
 
-  # def flight_params
-  #   params.require(:flight).permit(:origin, :destination, :departure, :duration,
-  #     :airport_attributes => [:id, :name, :airport_code])
-  # end
+  def flight_search_params
+    params.require(:search).permit(:from_airport, :to_airport, :date, :passengers)
+  end
 end

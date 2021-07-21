@@ -32,14 +32,31 @@
 
 <% end %>
 
-<%= form_with url:'/search', method: :get do |f| %>
+<%= form_with scope: :search, method: :get do |f| %>
   <%= f.label :from_airport, "From: " %>
-  <%= f.select(:from_airport, @airport_options) %>
+  <%= f.select :from_airport, @airport_options %>
   <%= f.label :to_airport, 'To: ' %>
-  <%= f.select(:to_airport, @airport_options) %>
-  <%= f.label :dates, 'Dates: ' %>
-  <%= f.select(:dates, @flight_date_options) %>
+  <%= f.select :to_airport, @airport_options %>
+  <%= f.label :date, 'Date: ' %>
+  <%= f.date_field :date %>
   <%= f.label :passengers, 'Number of Passengers: ' %>
   <%= f.select(:passengers, @passenger_options) %>
   <%= f.submit 'Submit' %>
+<% end %>
+
+<hr>
+
+<% if @search_results %>
+  <% unless @search_results.empty? %>
+    <%= form_with scope: :results do |f| %>
+      <% @search_results.each do |result| %>
+        <p>
+          <%= f.radio_button :flight_choice, result %>
+          <%= f.label :flight_choice, result.departure.strftime('%d/%m/%Y @ %H:%M') %>
+        </p>
+      <% end %>
+    <% end %>
+  <% else %>
+    <p>No results found</p>
+  <% end %>
 <% end %>
