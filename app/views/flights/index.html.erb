@@ -48,10 +48,10 @@
 
 <% if @search_results %>
   <% unless @search_results.empty? %>
-    <%= form_with model: @booking do |f| %>
+    <%= form_with model: @booking, method: :get do |f| %>
       <% @search_results.each do |result| %>
         <p>
-          <%= f.radio_button :flight_choice, result %>
+          <%= f.radio_button :flight_choice, result.id %>
           <%= f.label :flight_choice, result.departure.strftime('%d/%m/%Y @ %H:%M') %>
           <%= f.hidden_field :passengers, :value => params[:search][:passengers] %>
         </p>
