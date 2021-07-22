@@ -48,12 +48,14 @@
 
 <% if @search_results %>
   <% unless @search_results.empty? %>
-    <%= form_with scope: :results do |f| %>
+    <%= form_with model: @booking do |f| %>
       <% @search_results.each do |result| %>
         <p>
           <%= f.radio_button :flight_choice, result %>
           <%= f.label :flight_choice, result.departure.strftime('%d/%m/%Y @ %H:%M') %>
+          <%= f.hidden_field :passengers, :value => params[:search][:passengers] %>
         </p>
+          <p><%= f.submit 'Submit' %></p>
       <% end %>
     <% end %>
   <% else %>
