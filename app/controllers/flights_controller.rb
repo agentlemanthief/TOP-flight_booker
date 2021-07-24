@@ -6,10 +6,6 @@ class FlightsController < ApplicationController
     @search_results = search
   end
 
-  def flight_date_formatted(date)
-    date.strftime('%d/%m/%Y %H:%M')
-  end
-
   def search
     if params[:search]
       result = Flight.where("origin = ? AND destination = ? AND departure LIKE ?", params[:search][:from_airport], params[:search][:to_airport], "#{params[:search][:date]} %")
