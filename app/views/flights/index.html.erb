@@ -1,37 +1,5 @@
 <h1>Flight Search</h1>
 
-<% if false %>
-
-<%= form_with url:'/search', method: :get do |f| %>
-  <label for="from_airport_id">From: </label>
-  <select name="from_airport_id" id="airport_id">
-    <%= @airports.each do |airport| %>
-      <option value="<%= airport.id %>"><%= airport.name %></option>
-    <% end %>
-  </select>
-  <label for="to_airport_id">To: </label>
-  <select name="to_airport_id" id="airport_id">
-    <%= @airports.each do |airport| %>
-      <option value="<%= airport.id %>"><%= airport.name %></option>
-    <% end %>
-  </select>
-  <label for="passengers">Number of Passengers: </label>
-  <select name="passengers" id="passengers">
-    <%= (1..4).each do |number| %>
-      <option value="<%= number %>"><%= number %></option>
-    <% end %>
-  </select>
-  <label for="dates">Date: </label>
-  <select name="dates" id="dates">
-    <%= @flights.each do |flight| %>
-      <option value="<%= flight.id %>"><%= flight.departure.flight_date_formatted %></option>
-    <% end %>
-  </select>
-  <input type="submit" name="commit">
-<% end %>
-
-<% end %>
-
 <%= form_with scope: :search, method: :get do |f| %>
   <%= f.label :from_airport, "From: " %>
   <%= f.select :from_airport, @airport_options %>
@@ -53,10 +21,10 @@
         <p>
           <%= f.radio_button :flight_id, result.id %>
           <%= f.label :flight_id, result.departure.strftime('%d/%m/%Y @ %H:%M') %>
-          <%= f.hidden_field :passengers, :value => params[:search][:passengers] %>
         </p>
-          <p><%= f.submit 'Submit' %></p>
       <% end %>
+          <%= f.hidden_field :passengers, :value => params[:search][:passengers] %>
+          <p><%= f.submit 'Submit' %></p>
     <% end %>
   <% else %>
     <p>No results found</p>

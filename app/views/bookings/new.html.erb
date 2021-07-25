@@ -1,12 +1,19 @@
 <h1>Booking</h1>
 
-<%= form_for @booking do |f| %>
-  <p>Flight date: <%= @flight.departure %></p>
+<%= form_with model: @booking do |f| %>
+  <p>Flight date: <%= @flight.departure.strftime('%d/%m/%Y') %>
+  <p>Flight time: <%= @flight.departure.strftime('%H:%M') %></p>
   <p>From: <%= @flight.from_airport.name %></p>
   <p>To: <%= @flight.to_airport.name %></p>
-  <p>For <%= pluralize(@passengers, 'passenger') %></p>
-  <% @passengers.to_i.times do %>
-    <p>1</p>
+  <p>For <%= pluralize(@passenger_num, 'passenger') %></p>
+  <% @passenger_num.to_i.times do %>
+    <%= f.fields_for :passengers do |passenger_form| %>
+      <%= passenger_form.label :name, 'Name: ' %>
+      <%= passenger_form.text_field :name %>
+      <%= passenger_form.label :email, 'Email: ' %>
+      <%= passenger_form.email_field :email %>
+      <br>
+    <% end %>
   <% end %>
   <%= f.submit 'Create Booking' %>
 <% end %>
