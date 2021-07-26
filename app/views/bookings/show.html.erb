@@ -1,15 +1,27 @@
-<h1>Booking Confirmation</h1>
-
-<h2>Flight Details</h2>
-<p>From: <%= @booking.flight.from_airport.name %></p>
-<p>To: <%= @booking.flight.to_airport.name %></p>
-<p>Departing at: <%= @booking.flight.departure.strftime('%d/%m/%Y @ %H:%M') %></p>
-<p>Arriving at: <%= @booking.flight.arrival.strftime('%d/%m/%Y @ %H:%M') %></p>
-<p>Number of Passengers: <%= @booking.passengers.count %></p>
-<% @booking.passengers.each do |p| %>
-  <p>
-    <%= p.name %>
-  </p>
-<% end %>
-
-<button>Buy Via PayPal</button>
+<section class="section">
+  <div class="container">
+    <div class="columns is-centered">
+      <div class="section">
+        <h1 class="title is-5">Booking Confirmation and Payment</h1>
+      </div>
+    </div>
+    <div class="columns is-centered">
+      <div class="column is-four-fifths">
+        <div class="box">
+        <h2 class="title is-6">Flight Details</h2>
+        <p>From: <%= @booking.flight.from_airport.name %></p>
+        <p>To: <%= @booking.flight.to_airport.name %></p>
+        <p>Departing at: <%= @booking.flight.departure.strftime('%d/%m/%Y @ %H:%M') %></p>
+        <p>Arriving at: <%= @booking.flight.arrival.strftime('%d/%m/%Y @ %H:%M') %></p>
+        <p>Number of Passengers: <%= @booking.passengers.count %></p>
+        <% @booking.passengers.each do |p| %>
+          <p>
+            <%= p.name %>
+          </p>
+        <% end %>
+        </div>
+        <button class="button is-centered">Pay Via PayPal</button>
+      </div>
+    </div>
+  </div>
+</section>
