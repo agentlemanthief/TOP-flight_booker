@@ -6,14 +6,14 @@
   <p>From: <%= @flight.from_airport.name %></p>
   <p>To: <%= @flight.to_airport.name %></p>
   <p>For <%= pluralize(@passenger_num, 'passenger') %></p>
-  <% @passenger_num.to_i.times do %>
-    <%= f.fields_for :passengers do |passenger_form| %>
-      <%= passenger_form.label :name, 'Name: ' %>
-      <%= passenger_form.text_field :name %>
-      <%= passenger_form.label :email, 'Email: ' %>
-      <%= passenger_form.email_field :email %>
-      <br>
-    <% end %>
+  <%= f.fields_for :passengers do |passenger_form| %>
+    <%= passenger_form.label :name, 'Name: ' %>
+    <%= passenger_form.text_field :name %>
+    <%= passenger_form.label :email, 'Email: ' %>
+    <%= passenger_form.email_field :email %>
+    <br>
   <% end %>
+  <%= f.hidden_field :passenger_num, value: params[:passenger_num] %>
+  <%= f.hidden_field :flight_id, value: params[:flight_id] %>
   <%= f.submit 'Create Booking' %>
 <% end %>

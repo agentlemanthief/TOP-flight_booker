@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_07_22_111612) do
+ActiveRecord::Schema.define(version: 2021_07_26_114953) do
 
   create_table "airports", force: :cascade do |t|
     t.string "name"
@@ -19,9 +19,9 @@ ActiveRecord::Schema.define(version: 2021_07_22_111612) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "bookings", id: false, force: :cascade do |t|
-    t.bigint "passenger_id"
-    t.bigint "flight_id"
+  create_table "bookings", force: :cascade do |t|
+    t.integer "passenger_id"
+    t.integer "flight_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["flight_id"], name: "index_bookings_on_flight_id"
@@ -46,6 +46,7 @@ ActiveRecord::Schema.define(version: 2021_07_22_111612) do
     t.string "email"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.bigint "booking_id"
   end
 
 end

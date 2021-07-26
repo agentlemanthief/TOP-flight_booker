@@ -7,8 +7,8 @@
   <%= f.select :to_airport, @airport_options %>
   <%= f.label :date, 'Date: ' %>
   <%= f.date_field :date %>
-  <%= f.label :passengers, 'Number of Passengers: ' %>
-  <%= f.select(:passengers, @passenger_options) %>
+  <%= f.label :passenger_num, 'Number of Passengers: ' %>
+  <%= f.select(:passenger_num, @passenger_options) %>
   <%= f.submit 'Submit' %>
 <% end %>
 
@@ -23,7 +23,7 @@
           <%= f.label :flight_id, result.departure.strftime('%d/%m/%Y @ %H:%M') %>
         </p>
       <% end %>
-          <%= f.hidden_field :passengers, :value => params[:search][:passengers] %>
+          <%= f.hidden_field :passenger_num, :value => params[:search][:passenger_num] %>
           <p><%= f.submit 'Submit' %></p>
     <% end %>
   <% else %>
