@@ -1,0 +1,11 @@
+<%= form_with scope: :search, method: :get do |f| %>
+  <%= f.label :from_airport, "From: " %>
+  <%= f.select :from_airport, @airport_options %>
+  <%= f.label :to_airport, 'To: ' %>
+  <%= f.select :to_airport, @airport_options %>
+  <%= f.label :date, 'Date: ' %>
+  <%= f.date_field :date %>
+  <%= f.label :passenger_num, 'Number of Passengers: ' %>
+  <%= f.select(:passenger_num, @passenger_options) %>
+  <%= f.submit 'Submit' %>
+<% end %>

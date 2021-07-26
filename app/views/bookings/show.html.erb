@@ -1,0 +1,15 @@
+<h1>Booking Confirmation</h1>
+
+<h2>Flight Details</h2>
+<p>From: <%= @booking.flight.from_airport.name %></p>
+<p>To: <%= @booking.flight.to_airport.name %></p>
+<p>Departing at: <%= @booking.flight.departure.strftime('%d/%m/%Y @ %H:%M') %></p>
+<p>Arriving at: <%= @booking.flight.arrival.strftime('%d/%m/%Y @ %H:%M') %></p>
+<p>Number of Passengers: <%= @booking.passengers.count %></p>
+<% @booking.passengers.each do |p| %>
+  <p>
+    <%= p.name %>
+  </p>
+<% end %>
+
+<button>Buy Via PayPal</button>

@@ -1,32 +1,7 @@
 <h1>Flight Search</h1>
 
-<%= form_with scope: :search, method: :get do |f| %>
-  <%= f.label :from_airport, "From: " %>
-  <%= f.select :from_airport, @airport_options %>
-  <%= f.label :to_airport, 'To: ' %>
-  <%= f.select :to_airport, @airport_options %>
-  <%= f.label :date, 'Date: ' %>
-  <%= f.date_field :date %>
-  <%= f.label :passenger_num, 'Number of Passengers: ' %>
-  <%= f.select(:passenger_num, @passenger_options) %>
-  <%= f.submit 'Submit' %>
-<% end %>
+<%= render 'flight_search_form' %>
 
 <hr>
 
-<% if @search_results %>
-  <% unless @search_results.empty? %>
-    <%= form_with url: new_booking_path, method: :get, action: :new do |f| %>
-      <% @search_results.each do |result| %>
-        <p>
-          <%= f.radio_button :flight_id, result.id %>
-          <%= f.label :flight_id, result.departure.strftime('%d/%m/%Y @ %H:%M') %>
-        </p>
-      <% end %>
-          <%= f.hidden_field :passenger_num, :value => params[:search][:passenger_num] %>
-          <p><%= f.submit 'Submit' %></p>
-    <% end %>
-  <% else %>
-    <p>No results found</p>
-  <% end %>
-<% end %>
+<%= render 'search_results_choice' %>
