@@ -1,11 +1,72 @@
 <%= form_with scope: :search, method: :get do |f| %>
-  <%= f.label :from_airport, "From: " %>
-  <%= f.select :from_airport, @airport_options %>
-  <%= f.label :to_airport, 'To: ' %>
-  <%= f.select :to_airport, @airport_options %>
-  <%= f.label :date, 'Date: ' %>
-  <%= f.date_field :date %>
-  <%= f.label :passenger_num, 'Number of Passengers: ' %>
-  <%= f.select(:passenger_num, @passenger_options) %>
-  <%= f.submit 'Submit' %>
+
+  <div class="columns">
+    <div class="column has-text-right mr-6">
+      <div class="field">
+        <%= f.label :from_airport, "From: ", class: 'label' %>
+      </div>
+    </div>
+
+    <div class="column">
+      <div class="control has-text-centered mr-6">
+        <div class="select is-rounded is-small is-fullwidth">
+          <%= f.select :from_airport, @airport_options %>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="columns">
+    <div class="column has-text-right mr-6">
+      <div class="field">
+        <%= f.label :to_airport, 'To: ', class: 'label' %>
+      </div>
+    </div>
+
+    <div class="column">
+      <div class="control has-text-centered mr-6">
+        <div class="select is-rounded is-small is-fullwidth">
+          <%= f.select :to_airport, @airport_options %>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="columns">
+    <div class="column has-text-right mr-6">
+      <div class="field">
+        <%= f.label :date, 'Date: ', class: 'label' %>
+      </div>
+    </div>
+
+    <div class="column">
+      <div class="control has-text-centered mr-6">
+        <div class="control">
+          <%= f.date_field :date, style: 'width: 100%; border-radius: 10px; border: solid 1px grey;' %>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="columns">
+    <div class="column has-text-right mr-6">
+      <div class="field">
+        <%= f.label :passenger_num, 'Number of Passengers: ', class: 'label' %>
+      </div>
+    </div>
+
+    <div class="column">
+      <div class="control has-text-centered mr-6">
+        <div class="select is-rounded is-small is-fullwidth">
+        <%= f.select :passenger_num, @passenger_options %>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="field is-grouped is-grouped-centered">
+    <div class="control">
+      <%= f.submit 'Search Flights', class: 'button is-light' %>
+    </div>
+  </div>
 <% end %>

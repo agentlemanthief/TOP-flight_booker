@@ -1,31 +1,69 @@
 <section class="section">
   <div class="container">
     <div class="columns is-centered">
-      <div class="section">
-        <h1 class="title is-5">Booking Summary and Passenger Details Entry</h1>
-      </div>
+      <h1 class="title is-5 m-5">Flight Summary and Passenger Details Entry</h1>
     </div>
     <div class="columns is-centered">
-      <div class="column is-four-fifths">
+      <div class="column is-half">
         <div class="box">
         <%= form_with model: @booking do |f| %>
-          <p>Flight date: <%= @flight.departure.strftime('%d/%m/%Y') %>
-          <p>Flight time: <%= @flight.departure.strftime('%H:%M') %></p>
-          <p>Flight arrival date: <%= @flight.arrival.strftime('%d/%m/%Y') %></p>
-          <p>Flight arrival time: <%= @flight.arrival.strftime('%H:%M') %></p>
-          <p>From: <%= @flight.from_airport.name %></p>
-          <p>To: <%= @flight.to_airport.name %></p>
-          <p>For <%= pluralize(@passenger_num, 'passenger') %></p>
+
+          <div class="columns">
+            <div class="column has-text-right mr-6">
+              <div class="field">
+                <p>Flight date:</p>
+                <p>Flight time:</p>
+                <p>Flight arrival date:</p>
+                <p>Flight arrival time:</p>
+                <p>From:</p>
+                <p>To:</p>
+                <p>For:</p>
+              </div>
+            </div>
+
+            <div class="column">
+              <div class="control has-text-left">
+                <p><%= @flight.departure.strftime('%d/%m/%Y') %></p>
+                <p><%= @flight.departure.strftime('%H:%M') %></p>
+                <p><%= @flight.arrival.strftime('%d/%m/%Y') %></p>
+                <p><%= @flight.arrival.strftime('%H:%M') %></p>
+                <p><%= @flight.from_airport.name %></p>
+                <p><%= @flight.to_airport.name %></p>
+                <p><%= pluralize(@passenger_num, 'passenger') %></p>
+              </div>
+            </div>
+          </div>
+
+          <br><p>Please enter the personal details for each passenger</p><br>
+
           <%= f.fields_for :passengers do |passenger_form| %>
-            <%= passenger_form.label :name, 'Name: ', class: 'label' %>
-            <%= passenger_form.text_field :name, class: 'input' %>
-            <%= passenger_form.label :email, 'Email: ', class: 'label' %>
-            <%= passenger_form.email_field :email, class: 'input' %>
-            <br>
+
+            <p class="mt-4 mb-4">Passenger <%= passenger_form.index+1 %>:</p>
+
+            <div class="field">
+              <%= passenger_form.label :name, 'Name: ', class: 'label' %>
+            </div>
+            <div class="control">
+              <%= passenger_form.text_field :name, class: 'input' %>
+            </div>
+
+            <div class="field">
+              <%= passenger_form.label :email, 'Email: ', class: 'label' %>
+            </div>
+            <div class="control">
+              <%= passenger_form.email_field :email, class: 'input' %>
+            </div>
+
           <% end %>
+
           <%= f.hidden_field :passenger_num, value: params[:passenger_num] %>
           <%= f.hidden_field :flight_id, value: params[:flight_id] %>
-          <%= f.submit 'Create Booking', class: 'button' %>
+
+          <div class="field is-grouped is-grouped-centered mt-2">
+            <div class="control">
+              <%= f.submit 'Create Booking', class: 'button is-light' %>
+            </div>
+          </div>
         <% end %>
         </div>
       </div>

@@ -1,20 +1,21 @@
 <section class="section">
   <div class="container">
     <div class="columns is-centered">
-      <div class="section">
-        <h1 class="title is-5">Flight Search</h1>
-      </div>
+      <h1 class="title is-4 m-5 has-text-centered">Flight Search</h1>
     </div>
     <div class="columns is-centered">
-      <div class="column is-four-fifths">
+      <div class="column is-half">
         <div class="box">
           <%= render 'flight_search_form' %>
         </div>
       </div>
     </div>
     <div class="columns is-centered">
+      <h1 class="title is-4 m-5">Search Results</h1>
+    </div>
+    <div class="columns is-centered">
     <% if @search_results %>
-      <div class="column is-four-fifths">
+      <div class="column is-half">
         <div class="box">
           <%= render 'search_results_choice' %>
         </div>

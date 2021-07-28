@@ -4,11 +4,13 @@
       <% @search_results.each do |result| %>
         <p>
           <%= f.radio_button :flight_id, result.id %>
-          <%= f.label :flight_id, result.departure.strftime('%d/%m/%Y @ %H:%M') %>
+          <%= f.label :flight_id, result.departure.strftime('%d/%m/%Y @ %H:%M'), class: 'radio' %>
         </p>
       <% end %>
           <%= f.hidden_field :passenger_num, :value => params[:search][:passenger_num] %>
-          <p><%= f.submit 'Submit' %></p>
+          <div class="field is-grouped is-grouped-centered">
+            <p><%= f.submit 'Submit', class: 'button is-light' %></p>
+          </div>
     <% end %>
   <% else %>
     <p>No results found</p>
