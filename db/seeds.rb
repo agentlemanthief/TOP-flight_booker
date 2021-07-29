@@ -10,35 +10,69 @@ puts 'Deleting Previous Entries...'
 
 Airport.delete_all
 Flight.delete_all
+Booking.delete_all
+Passenger.delete_all
 
 puts 'Deleted Previous Entries!'
 
 puts 'Seeding Airports...'
 
-Airport.create(name: 'Aberdeen', airport_code: 'ABZ')
 Airport.create(name: 'Edinburgh', airport_code: 'EDI')
-Airport.create(name: 'Glasgow', airport_code: 'GLA')
 Airport.create(name: 'London Gatwick', airport_code: 'LGW')
-Airport.create(name: 'London Stanstead', airport_code: 'STN')
-Airport.create(name: 'London Heathrow', airport_code: 'LHR')
 Airport.create(name: 'Melbourne', airport_code: 'MEL')
 Airport.create(name: 'New York', airport_code: 'NYC')
 Airport.create(name: 'San Francisco', airport_code: 'SFO')
-Airport.create(name: 'Colombia', airport_code: 'CLO')
 
 puts 'Finished Seeding Airports!'
 
 puts 'Seeding Flights...'
 
-Flight.create(origin: 'SFO', destination: 'NYC', departure: '2021-07-21 12:00', arrival: '2021-07-21 15:00', from_airport_id: '9', to_airport_id: '8')
-Flight.create(origin: 'SFO', destination: 'NYC', departure: '2021-07-29 12:00', arrival: '2021-07-29 15:00', from_airport_id: '9', to_airport_id: '8')
-Flight.create(origin: 'SFO', destination: 'NYC', departure: '2021-08-03 12:00', arrival: '2021-08-03 15:00', from_airport_id: '9', to_airport_id: '8')
-Flight.create(origin: 'SFO', destination: 'NYC', departure: '2021-08-21 12:00', arrival: '2021-08-21 15:00', from_airport_id: '9', to_airport_id: '8')
-Flight.create(origin: 'SFO', destination: 'NYC', departure: '2021-09-05 12:00', arrival: '2021-09-05 15:00', from_airport_id: '9', to_airport_id: '8')
-Flight.create(origin: 'NYC', destination: 'SFO', departure: '2021-07-25 12:00', arrival: '2021-07-25 14:30', from_airport_id: '8', to_airport_id: '9')
-Flight.create(origin: 'NYC', destination: 'SFO', departure: '2021-07-31 12:00', arrival: '2021-07-31 14:30', from_airport_id: '8', to_airport_id: '9')
-Flight.create(origin: 'NYC', destination: 'SFO', departure: '2021-08-22 12:00', arrival: '2021-08-22 14:30', from_airport_id: '8', to_airport_id: '9')
-Flight.create(origin: 'NYC', destination: 'SFO', departure: '2021-08-30 12:00', arrival: '2021-08-30 14:30', from_airport_id: '8', to_airport_id: '9')
-Flight.create(origin: 'NYC', destination: 'SFO', departure: '2021-09-11 12:00', arrival: '2021-09-11 14:30', from_airport_id: '8', to_airport_id: '9')
+origin_selection = ['EDI', 'LGW', 'MEL', 'NYC', 'SFO']
+destination_selection = ['EDI', 'LGW', 'MEL', 'NYC', 'SFO']
+year = [2021, 2022]
+
+10000.times do
+  origin = origin_selection.sample
+  destination = destination_selection.sample
+  while origin == destination
+    destination = destination_selection.sample
+  end
+
+  month = sprintf '%02d', rand(12)
+  day = sprintf '%02d', rand(28)
+  departure_time = "#{sprintf '%02d', rand(21)}:#{sprintf '%02d', rand(59)}"
+  arrival_time = (sprintf '%02d', (departure_time[0..1].to_i + 3) % 24) + ':' + departure_time[
+3..4]
+
+  departure = "#{year.sample}-#{month}-#{day} #{departure_time}"
+  arrival = "#{year.sample}-#{month}-#{day} #{arrival_time}"
+
+  from_airport_id = case origin
+                    when 'EDI'
+                      1
+                    when 'LGW'
+                      2
+                    when 'MEL'
+                      3
+                    when 'NYC'
+                      4
+                    when 'SFO'
+                      5
+                    end
+  to_airport_id = case destination
+                    when 'EDI'
+                      1
+                    when 'LGW'
+                      2
+                    when 'MEL'
+                      3
+                    when 'NYC'
+                      4
+                    when 'SFO'
+                      5
+                    end
+
+  Flight.create(origin: origin, destination: destination, departure: departure, arrival: arrival, from_airport_id: from_airport_id, to_airport_id: to_airport_id)
+end
 
 puts 'Finished Seeding Flights!'
