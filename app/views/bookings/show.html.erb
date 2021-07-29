@@ -1,26 +1,62 @@
 <section class="section">
   <div class="container">
-    <div class="columns is-centered">
-      <div class="section">
-        <h1 class="title is-5">Booking Confirmation and Payment</h1>
-      </div>
+
+    <div class="has-text-centered">
+      <h1 class="title is-5 m-5">Booking Confirmation and Payment</h1>
     </div>
+
     <div class="columns is-centered">
-      <div class="column is-four-fifths">
+      <div class="column is-two-thirds">
         <div class="box">
-        <h2 class="title is-6">Flight Details</h2>
-        <p>From: <%= @booking.flight.from_airport.name %></p>
-        <p>To: <%= @booking.flight.to_airport.name %></p>
-        <p>Departing at: <%= @booking.flight.departure.strftime('%d/%m/%Y @ %H:%M') %></p>
-        <p>Arriving at: <%= @booking.flight.arrival.strftime('%d/%m/%Y @ %H:%M') %></p>
-        <p>Number of Passengers: <%= @booking.passengers.count %></p>
-        <% @booking.passengers.each do |p| %>
-          <p>
-            <%= p.name %>
-          </p>
-        <% end %>
+        <div class="panel-block">
+          <h2 class="title is-6">Flight Details</h2>
         </div>
-        <button class="button is-centered">Pay Via PayPal</button>
+
+        <div class="columns mt-3">
+          <div class="column has-text-right mr-6">
+            <p><strong>From: </strong></p>
+            <p><strong>To: </strong></p>
+            <p><strong>Departing at: </strong></p>
+            <p><strong>Arriving at:</strong></p>
+          </div>
+
+          <div class="column has-text-left">
+            <p><%= @booking.flight.from_airport.name %></p>
+            <p><%= @booking.flight.to_airport.name %></p>
+            <p><%= @booking.flight.departure.strftime('%d/%m/%Y @ %H:%M') %></p>
+            <p><%= @booking.flight.arrival.strftime('%d/%m/%Y @ %H:%M') %></p>
+          </div>
+        </div>
+
+        <div class="panel-block">
+          <h2 class="title is-6 mt-5">Passenger Details</h2>
+        </div>
+
+        <% @booking.passengers.each_with_index do |p, i| %>
+          <div class="columns mt-3">
+            <div class="column has-text-right mr-6">
+                <h3 class="title is-6 mt-5">
+                  Passenger <%= i+1 %>:
+                </h3>
+            </div>
+
+            <div class="column has-text-left">
+              <p>
+                <strong>Name:</strong> <%= p.name %>
+              </p>
+              <p class="mt-4">
+                <strong>Email:</strong> <%= p.email %>
+              </p>
+            </div>
+          </div>
+        <% end %>
+
+          <div class="field is-grouped is-grouped-centered mt-2">
+            <div class="control">
+              <button class="button is-light">To Checkout</button>
+            </div>
+          </div>
+
       </div>
     </div>
   </div>

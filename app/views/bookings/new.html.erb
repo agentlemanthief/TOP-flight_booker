@@ -1,6 +1,6 @@
 <section class="section">
   <div class="container">
-    <div class="columns is-centered">
+    <div class="has-text-centered">
       <h1 class="title is-5 m-5">Flight Summary and Passenger Details Entry</h1>
     </div>
     <div class="columns is-centered">
@@ -11,13 +11,13 @@
           <div class="columns">
             <div class="column has-text-right mr-6">
               <div class="field">
-                <p>Flight date:</p>
-                <p>Flight time:</p>
-                <p>Flight arrival date:</p>
-                <p>Flight arrival time:</p>
-                <p>From:</p>
-                <p>To:</p>
-                <p>For:</p>
+                <p><strong>Flight date:</strong></p>
+                <p><strong>Flight time:</strong></p>
+                <p><strong>Flight arrival date:</strong></p>
+                <p><strong>Flight arrival time:</strong></p>
+                <p><strong>From:</strong></p>
+                <p><strong>To:</strong></p>
+                <p><strong>For:</strong></p>
               </div>
             </div>
 
@@ -34,7 +34,9 @@
             </div>
           </div>
 
-          <br><p>Please enter the personal details for each passenger</p><br>
+          <div class="panel-block">
+            <p>Please enter the personal details for each passenger</p><br>
+          </div>
 
           <%= f.fields_for :passengers do |passenger_form| %>
 
