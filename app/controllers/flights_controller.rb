@@ -8,7 +8,12 @@ class FlightsController < ApplicationController
 
   def search
     if params[:search]
-      result = Flight.where("origin = ? AND destination = ? AND departure LIKE ?", params[:search][:from_airport], params[:search][:to_airport], "#{params[:search][:date]} %")
+      if params[:search][:date].empty?
+        flash[:alert] = 'Please pick a date!'
+        redirect_to root_path
+      else
+        result = Flight.where("origin = ? AND destination = ? AND departure LIKE ?", params[:search][:from_airport], params[:search][:to_airport], "#{params[:search][:date]} %")
+      end
     end
   end
 

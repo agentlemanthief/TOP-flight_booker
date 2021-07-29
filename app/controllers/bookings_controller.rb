@@ -1,7 +1,14 @@
 class BookingsController < ApplicationController
   def new
     @booking = Booking.new
-    @flight = Flight.find(params[:flight_id])
+
+    if params[:flight_id]
+      @flight = Flight.find(params[:flight_id])
+    else
+      flash[:alert] = 'Please select a flight!'
+      redirect_back(fallback_location: root_path)
+    end
+
     @passenger_num = params[:passenger_num].to_i
     @passenger_num.times { @booking.passengers.build }
   end
@@ -10,11 +17,11 @@ class BookingsController < ApplicationController
     @booking = Booking.new(booking_params)
 
     if @booking.save
-      flash[:success] = 'Booking successfull!'
+      flash[:notice] = 'Booking successfull!'
       redirect_to @booking
     else
-      flash[:error] = 'Booking error!'
-      redirect_to root_path
+      flash[:alert] = @booking.errors.full_messages.to_sentence
+      redirect_back(fallback_location: root_path)
     end
   end
 

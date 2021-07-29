@@ -17,7 +17,6 @@
                 <p><strong>Flight arrival time:</strong></p>
                 <p><strong>From:</strong></p>
                 <p><strong>To:</strong></p>
-                <p><strong>For:</strong></p>
               </div>
             </div>
 
@@ -29,7 +28,6 @@
                 <p><%= @flight.arrival.strftime('%H:%M') %></p>
                 <p><%= @flight.from_airport.name %></p>
                 <p><%= @flight.to_airport.name %></p>
-                <p><%= pluralize(@passenger_num, 'passenger') %></p>
               </div>
             </div>
           </div>
