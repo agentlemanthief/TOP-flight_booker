@@ -50,6 +50,7 @@ group :development do
   gem 'guard', '~> 2.17'
   gem 'guard-livereload', '~> 2.5', '>= 2.5.2', require: false
   gem 'rack-livereload'
+  gem "letter_opener"
 end
 
 group :test do
