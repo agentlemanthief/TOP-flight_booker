@@ -6,7 +6,7 @@
   <body>
     <h1>Booking Confirmation</h1>
     <hr>
-    <p>Dear <%= passenger.name %>,</p>
+    <p>Dear <%= @passenger.name.titleize %>,</p>
     <br>
     <p>Thank you for your booking with FlightBooker today!</p>
     <p>To view your booking please click <%= link_to 'here', @url %>.</p>
