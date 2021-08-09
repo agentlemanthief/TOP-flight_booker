@@ -31,7 +31,7 @@ origin_selection = ['EDI', 'LGW', 'MEL', 'NYC', 'SFO']
 destination_selection = ['EDI', 'LGW', 'MEL', 'NYC', 'SFO']
 year = [2021, 2022]
 
-10000.times do
+9000.times do
   origin = origin_selection.sample
   destination = destination_selection.sample
   while origin == destination
@@ -43,9 +43,10 @@ year = [2021, 2022]
   departure_time = "#{sprintf '%02d', rand(21)}:#{sprintf '%02d', rand(59)}"
   arrival_time = (sprintf '%02d', (departure_time[0..1].to_i + 3) % 24) + ':' + departure_time[
 3..4]
+  dep_year = year.sample
 
-  departure = "#{year.sample}-#{month}-#{day} #{departure_time}"
-  arrival = "#{year.sample}-#{month}-#{day} #{arrival_time}"
+  departure = "#{dep_year}-#{month}-#{day} #{departure_time}"
+  arrival = "#{dep_year}-#{month}-#{day} #{arrival_time}"
 
   from_airport_id = case origin
                     when 'EDI'
